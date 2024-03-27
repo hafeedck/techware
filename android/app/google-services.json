@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910781369122",
+    "project_id": "machinetestkochi",
+    "storage_bucket": "machinetestkochi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910781369122:android:fcd6e3d8ecb17e5577f37b",
+        "android_client_info": {
+          "package_name": "com.example.machine_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACBkeAxtILMlxpmsDZkuUhMXj1G-2m1rQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
