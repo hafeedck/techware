@@ -57,6 +57,7 @@ class ProductAddView extends StatelessWidget {
                         labelText: 'Quantity',
                         border: OutlineInputBorder(),
                       ),
+                      keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter measurment';

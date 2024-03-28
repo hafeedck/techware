@@ -16,5 +16,5 @@ Map<String, Widget Function(BuildContext)> routes = <String, WidgetBuilder>{
   '/signup': (context) => SignUpView(),
   '/product-home': (context) => const ProductListScreen(),
   '/product-add': (context) => ProductAddView(),
-  '/product-deatails': (context) => const ProductDetailView()
+  '/product-details': (context) => const ProductDetailView()
 };
