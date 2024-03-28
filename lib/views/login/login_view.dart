@@ -16,7 +16,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
-
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: CommonAppbar(
         label: 'Login',
@@ -36,52 +36,74 @@ class LoginView extends StatelessWidget {
           child: BlocBuilder<LoginBloc, LoginState>(
             builder: (context, state) {
               return SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    100.0.spaceY,
-                    Center(child: blackText("Login", 25)),
-                    75.0.spaceY,
-                    TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        border: OutlineInputBorder(),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      100.0.spaceY,
+                      Center(child: blackText("Login", 25)),
+                      75.0.spaceY,
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter a Email id';
+                          } else if (!RegExp(
+                                  "^[a-zA-Z0-9.!#%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*")
+                              .hasMatch(value)) {
+                            return 'Please Enter a valid Email';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
-                    ),
-                    15.0.spaceY,
-                    TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Password',
-                        border: OutlineInputBorder(),
+                      15.0.spaceY,
+                      TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Enter Your Password';
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    15.0.spaceY,
-                    CommonButton(
-                      isLoading: state.isloading,
-                      onPressed: () {
-                        FocusScope.of(context).unfocus();
-                        final email = emailController.text.trim();
-                        final password = passwordController.text.trim();
-                        loginBloc.add(LoginEvent.login(email, password));
-                      },
-                      text: 'Login',
-                    ),
-                    100.0.spaceY,
-                    Center(
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/signup',
-                              );
-                            },
-                            child:
-                                blackText("Dont't have account ,SignUp", 18))),
-                  ],
+                      15.0.spaceY,
+                      CommonButton(
+                        isLoading: state.isloading,
+                        onPressed: () {
+                          FocusScope.of(context).unfocus();
+                          final email = emailController.text.trim();
+                          final password = passwordController.text.trim();
+                          if (formKey.currentState!.validate()) {
+                            loginBloc.add(LoginEvent.login(email, password));
+                          }
+                        },
+                        text: 'Login',
+                      ),
+                      100.0.spaceY,
+                      Center(
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/signup',
+                                );
+                              },
+                              child: blackText(
+                                  "Dont't have account ,SignUp", 18))),
+                    ],
+                  ),
                 ),
               );
             },
