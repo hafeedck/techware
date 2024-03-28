@@ -51,7 +51,7 @@ Text greyText(
     style: TextStyle(
         fontFamily: 'Lato',
         overflow: textOverflow,
-        color: const Color(0xFFC8C8C8),
+        color: Colors.grey,
         fontSize: fontSize,
         fontWeight: fontWeight),
   );

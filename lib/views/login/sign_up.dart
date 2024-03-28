@@ -4,14 +4,13 @@ import 'package:machine_test/bloc/login/login_bloc.dart';
 import 'package:machine_test/widgets/app_bar/common_appbar.dart';
 import 'package:machine_test/widgets/button/common_buttons.dart';
 import 'package:machine_test/widgets/extension/widget_extentions.dart';
-import 'package:machine_test/widgets/style/color.dart';
 import 'package:machine_test/widgets/text/common_text.dart';
 
-class LoginView extends StatelessWidget {
+class SignUpView extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  LoginView({super.key});
+  SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +18,16 @@ class LoginView extends StatelessWidget {
 
     return Scaffold(
       appBar: CommonAppbar(
-        label: 'Login',
-        onpress: () {},
+        label: 'Sign up',
+        onpress: () {
+          Navigator.pop(context);
+        },
       ),
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
-          if (state.status == "Successfully logged in") {
+          if (state.status == "Successfully Signed in") {
             Navigator.pushNamedAndRemoveUntil(
                 context, '/pin-set', (route) => false);
-          } else if (state.status == 'Failed to log in') {
-            toast("Enter correct Credentials");
           }
         },
         child: Padding(
@@ -40,7 +39,7 @@ class LoginView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     100.0.spaceY,
-                    Center(child: blackText("Login", 25)),
+                    Center(child: blackText("Sign up", 25)),
                     75.0.spaceY,
                     TextFormField(
                       controller: emailController,
@@ -63,24 +62,13 @@ class LoginView extends StatelessWidget {
                     CommonButton(
                       isLoading: state.isloading,
                       onPressed: () {
-                        FocusScope.of(context).unfocus();
+                         FocusScope.of(context).unfocus();
                         final email = emailController.text.trim();
                         final password = passwordController.text.trim();
-                        loginBloc.add(LoginEvent.login(email, password));
+                        loginBloc.add(LoginEvent.signUp(email, password));
                       },
-                      text: 'Login',
+                      text: 'Sign up',
                     ),
-                    100.0.spaceY,
-                    Center(
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/signup',
-                              );
-                            },
-                            child:
-                                blackText("Dont't have account ,SignUp", 18))),
                   ],
                 ),
               );

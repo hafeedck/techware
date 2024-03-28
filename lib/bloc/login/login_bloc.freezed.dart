@@ -20,37 +20,49 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String pinCode) setPin,
+    required TResult Function(String pinCode) checkPin,
+    required TResult Function(String email, String password) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? login,
     TResult? Function(String pinCode)? setPin,
+    TResult? Function(String pinCode)? checkPin,
+    TResult? Function(String email, String password)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String pinCode)? setPin,
+    TResult Function(String pinCode)? checkPin,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
-    required TResult Function(Pin value) setPin,
+    required TResult Function(SetPin value) setPin,
+    required TResult Function(CheckPin value) checkPin,
+    required TResult Function(SignUp value) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Login value)? login,
-    TResult? Function(Pin value)? setPin,
+    TResult? Function(SetPin value)? setPin,
+    TResult? Function(CheckPin value)? checkPin,
+    TResult? Function(SignUp value)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
-    TResult Function(Pin value)? setPin,
+    TResult Function(SetPin value)? setPin,
+    TResult Function(CheckPin value)? checkPin,
+    TResult Function(SignUp value)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +159,8 @@ class _$Login implements Login {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String pinCode) setPin,
+    required TResult Function(String pinCode) checkPin,
+    required TResult Function(String email, String password) signUp,
   }) {
     return login(email, password);
   }
@@ -156,6 +170,8 @@ class _$Login implements Login {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? login,
     TResult? Function(String pinCode)? setPin,
+    TResult? Function(String pinCode)? checkPin,
+    TResult? Function(String email, String password)? signUp,
   }) {
     return login?.call(email, password);
   }
@@ -165,6 +181,8 @@ class _$Login implements Login {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String pinCode)? setPin,
+    TResult Function(String pinCode)? checkPin,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -177,7 +195,9 @@ class _$Login implements Login {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
-    required TResult Function(Pin value) setPin,
+    required TResult Function(SetPin value) setPin,
+    required TResult Function(CheckPin value) checkPin,
+    required TResult Function(SignUp value) signUp,
   }) {
     return login(this);
   }
@@ -186,7 +206,9 @@ class _$Login implements Login {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Login value)? login,
-    TResult? Function(Pin value)? setPin,
+    TResult? Function(SetPin value)? setPin,
+    TResult? Function(CheckPin value)? checkPin,
+    TResult? Function(SignUp value)? signUp,
   }) {
     return login?.call(this);
   }
@@ -195,7 +217,9 @@ class _$Login implements Login {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
-    TResult Function(Pin value)? setPin,
+    TResult Function(SetPin value)? setPin,
+    TResult Function(CheckPin value)? checkPin,
+    TResult Function(SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -215,17 +239,18 @@ abstract class Login implements LoginEvent {
 }
 
 /// @nodoc
-abstract class _$$PinCopyWith<$Res> {
-  factory _$$PinCopyWith(_$Pin value, $Res Function(_$Pin) then) =
-      __$$PinCopyWithImpl<$Res>;
+abstract class _$$SetPinCopyWith<$Res> {
+  factory _$$SetPinCopyWith(_$SetPin value, $Res Function(_$SetPin) then) =
+      __$$SetPinCopyWithImpl<$Res>;
   @useResult
   $Res call({String pinCode});
 }
 
 /// @nodoc
-class __$$PinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res, _$Pin>
-    implements _$$PinCopyWith<$Res> {
-  __$$PinCopyWithImpl(_$Pin _value, $Res Function(_$Pin) _then)
+class __$$SetPinCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$SetPin>
+    implements _$$SetPinCopyWith<$Res> {
+  __$$SetPinCopyWithImpl(_$SetPin _value, $Res Function(_$SetPin) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -233,7 +258,7 @@ class __$$PinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res, _$Pin>
   $Res call({
     Object? pinCode = null,
   }) {
-    return _then(_$Pin(
+    return _then(_$SetPin(
       null == pinCode
           ? _value.pinCode
           : pinCode // ignore: cast_nullable_to_non_nullable
@@ -244,8 +269,8 @@ class __$$PinCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res, _$Pin>
 
 /// @nodoc
 
-class _$Pin implements Pin {
-  const _$Pin(this.pinCode);
+class _$SetPin implements SetPin {
+  const _$SetPin(this.pinCode);
 
   @override
   final String pinCode;
@@ -259,7 +284,7 @@ class _$Pin implements Pin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Pin &&
+            other is _$SetPin &&
             (identical(other.pinCode, pinCode) || other.pinCode == pinCode));
   }
 
@@ -269,14 +294,16 @@ class _$Pin implements Pin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PinCopyWith<_$Pin> get copyWith =>
-      __$$PinCopyWithImpl<_$Pin>(this, _$identity);
+  _$$SetPinCopyWith<_$SetPin> get copyWith =>
+      __$$SetPinCopyWithImpl<_$SetPin>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String pinCode) setPin,
+    required TResult Function(String pinCode) checkPin,
+    required TResult Function(String email, String password) signUp,
   }) {
     return setPin(pinCode);
   }
@@ -286,6 +313,8 @@ class _$Pin implements Pin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? login,
     TResult? Function(String pinCode)? setPin,
+    TResult? Function(String pinCode)? checkPin,
+    TResult? Function(String email, String password)? signUp,
   }) {
     return setPin?.call(pinCode);
   }
@@ -295,6 +324,8 @@ class _$Pin implements Pin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String pinCode)? setPin,
+    TResult Function(String pinCode)? checkPin,
+    TResult Function(String email, String password)? signUp,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -307,7 +338,9 @@ class _$Pin implements Pin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
-    required TResult Function(Pin value) setPin,
+    required TResult Function(SetPin value) setPin,
+    required TResult Function(CheckPin value) checkPin,
+    required TResult Function(SignUp value) signUp,
   }) {
     return setPin(this);
   }
@@ -316,7 +349,9 @@ class _$Pin implements Pin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Login value)? login,
-    TResult? Function(Pin value)? setPin,
+    TResult? Function(SetPin value)? setPin,
+    TResult? Function(CheckPin value)? checkPin,
+    TResult? Function(SignUp value)? signUp,
   }) {
     return setPin?.call(this);
   }
@@ -325,7 +360,9 @@ class _$Pin implements Pin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
-    TResult Function(Pin value)? setPin,
+    TResult Function(SetPin value)? setPin,
+    TResult Function(CheckPin value)? checkPin,
+    TResult Function(SignUp value)? signUp,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -335,12 +372,310 @@ class _$Pin implements Pin {
   }
 }
 
-abstract class Pin implements LoginEvent {
-  const factory Pin(final String pinCode) = _$Pin;
+abstract class SetPin implements LoginEvent {
+  const factory SetPin(final String pinCode) = _$SetPin;
 
   String get pinCode;
   @JsonKey(ignore: true)
-  _$$PinCopyWith<_$Pin> get copyWith => throw _privateConstructorUsedError;
+  _$$SetPinCopyWith<_$SetPin> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckPinCopyWith<$Res> {
+  factory _$$CheckPinCopyWith(
+          _$CheckPin value, $Res Function(_$CheckPin) then) =
+      __$$CheckPinCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String pinCode});
+}
+
+/// @nodoc
+class __$$CheckPinCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$CheckPin>
+    implements _$$CheckPinCopyWith<$Res> {
+  __$$CheckPinCopyWithImpl(_$CheckPin _value, $Res Function(_$CheckPin) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pinCode = null,
+  }) {
+    return _then(_$CheckPin(
+      null == pinCode
+          ? _value.pinCode
+          : pinCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CheckPin implements CheckPin {
+  const _$CheckPin(this.pinCode);
+
+  @override
+  final String pinCode;
+
+  @override
+  String toString() {
+    return 'LoginEvent.checkPin(pinCode: $pinCode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckPin &&
+            (identical(other.pinCode, pinCode) || other.pinCode == pinCode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pinCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckPinCopyWith<_$CheckPin> get copyWith =>
+      __$$CheckPinCopyWithImpl<_$CheckPin>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) login,
+    required TResult Function(String pinCode) setPin,
+    required TResult Function(String pinCode) checkPin,
+    required TResult Function(String email, String password) signUp,
+  }) {
+    return checkPin(pinCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? login,
+    TResult? Function(String pinCode)? setPin,
+    TResult? Function(String pinCode)? checkPin,
+    TResult? Function(String email, String password)? signUp,
+  }) {
+    return checkPin?.call(pinCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String pinCode)? setPin,
+    TResult Function(String pinCode)? checkPin,
+    TResult Function(String email, String password)? signUp,
+    required TResult orElse(),
+  }) {
+    if (checkPin != null) {
+      return checkPin(pinCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Login value) login,
+    required TResult Function(SetPin value) setPin,
+    required TResult Function(CheckPin value) checkPin,
+    required TResult Function(SignUp value) signUp,
+  }) {
+    return checkPin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Login value)? login,
+    TResult? Function(SetPin value)? setPin,
+    TResult? Function(CheckPin value)? checkPin,
+    TResult? Function(SignUp value)? signUp,
+  }) {
+    return checkPin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(SetPin value)? setPin,
+    TResult Function(CheckPin value)? checkPin,
+    TResult Function(SignUp value)? signUp,
+    required TResult orElse(),
+  }) {
+    if (checkPin != null) {
+      return checkPin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckPin implements LoginEvent {
+  const factory CheckPin(final String pinCode) = _$CheckPin;
+
+  String get pinCode;
+  @JsonKey(ignore: true)
+  _$$CheckPinCopyWith<_$CheckPin> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SignUpCopyWith<$Res> {
+  factory _$$SignUpCopyWith(_$SignUp value, $Res Function(_$SignUp) then) =
+      __$$SignUpCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email, String password});
+}
+
+/// @nodoc
+class __$$SignUpCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$SignUp>
+    implements _$$SignUpCopyWith<$Res> {
+  __$$SignUpCopyWithImpl(_$SignUp _value, $Res Function(_$SignUp) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$SignUp(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SignUp implements SignUp {
+  const _$SignUp(this.email, this.password);
+
+  @override
+  final String email;
+  @override
+  final String password;
+
+  @override
+  String toString() {
+    return 'LoginEvent.signUp(email: $email, password: $password)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SignUp &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignUpCopyWith<_$SignUp> get copyWith =>
+      __$$SignUpCopyWithImpl<_$SignUp>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) login,
+    required TResult Function(String pinCode) setPin,
+    required TResult Function(String pinCode) checkPin,
+    required TResult Function(String email, String password) signUp,
+  }) {
+    return signUp(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? login,
+    TResult? Function(String pinCode)? setPin,
+    TResult? Function(String pinCode)? checkPin,
+    TResult? Function(String email, String password)? signUp,
+  }) {
+    return signUp?.call(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String pinCode)? setPin,
+    TResult Function(String pinCode)? checkPin,
+    TResult Function(String email, String password)? signUp,
+    required TResult orElse(),
+  }) {
+    if (signUp != null) {
+      return signUp(email, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Login value) login,
+    required TResult Function(SetPin value) setPin,
+    required TResult Function(CheckPin value) checkPin,
+    required TResult Function(SignUp value) signUp,
+  }) {
+    return signUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Login value)? login,
+    TResult? Function(SetPin value)? setPin,
+    TResult? Function(CheckPin value)? checkPin,
+    TResult? Function(SignUp value)? signUp,
+  }) {
+    return signUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(SetPin value)? setPin,
+    TResult Function(CheckPin value)? checkPin,
+    TResult Function(SignUp value)? signUp,
+    required TResult orElse(),
+  }) {
+    if (signUp != null) {
+      return signUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUp implements LoginEvent {
+  const factory SignUp(final String email, final String password) = _$SignUp;
+
+  String get email;
+  String get password;
+  @JsonKey(ignore: true)
+  _$$SignUpCopyWith<_$SignUp> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

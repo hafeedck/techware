@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:machine_test/widgets/style/color.dart';
@@ -12,8 +13,8 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushNamedAndRemoveUntil(context, '/pin-set', (route) => false);
+    Future.delayed(const Duration(seconds: 1), () {
+      checkLoginStatus();
     });
 
     super.initState();
@@ -24,11 +25,22 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void checkLoginStatus() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/pin-check', (route) => false);
+    } else {
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors().primaryColor,
-        body:  const Center(
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

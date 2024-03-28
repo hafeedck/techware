@@ -6,14 +6,12 @@ class CommonAppbar extends StatelessWidget implements PreferredSize {
   final Function onpress;
   final bool? visible;
   final Function? onClick;
-  final Function? onExcel;
   const CommonAppbar({
     Key? key,
     required this.label,
     required this.onpress,
     this.visible = false,
     this.onClick,
-    this.onExcel,
   }) : super(key: key);
   @override
   Size get preferredSize => const Size.fromHeight(70);
@@ -36,6 +34,24 @@ class CommonAppbar extends StatelessWidget implements PreferredSize {
           fontSize: 17,
         ),
       ),
+      actions: [
+        Visibility(
+          visible: visible!,
+          child: Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: IconButton(
+              onPressed: () {
+                onClick!();
+              },
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 
